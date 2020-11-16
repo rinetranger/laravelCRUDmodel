@@ -36,17 +36,17 @@ class TestController extends Controller
             'price1'=>$request->price1,
             'price2'=>$request->price2,
         ];
-        DB::insert('insert into api (type,price1,price2) values (:type,:price1,:price2)', $param);
+        DB::table('api')->insert($param);
 
         return redirect('test');
 
     }
     public function edit(Request $request){
         $param = ['id'=>$request->id];
-        $item =DB::select('select * from api where id =:id',$param);
+        $item =DB::table('api')->where('id',$request->id)->first();
 
 
-        return view('test.edit',['form'=>$item[0]]);
+        return view('test.edit',['form'=>$item]);
 
     }
     public function update(Request $request){
@@ -58,23 +58,20 @@ class TestController extends Controller
             'price2'=>$request->price2,
         ];
 
-        DB::update('update api set type =:type ,price1 =:price1 ,price2 =:price2 where id = :id',$param);
+        DB::table('api')->where('id',$request->id)->update($param);
 
         return redirect('/test');
     }
     public function del(Request $request){
 
-        $param = ['id'=>$request->id];
-        $item =DB::select('select * from api where id =:id',$param);
+        $item =DB::table('api')->where('id',$request->id)->first();
 
 
-        return view('test.del',['form'=>$item[0]]);
+        return view('test.del',['form'=>$item]);
     }
     public function remove(Request $request){
 
-        $param = ['id'=>$request->id];
-        $item =DB::delete('delete from api where id =:id',$param);
-
+        DB::table('api')->where('id',$request->id)->delete();
 
         return redirect('/test');
     }
