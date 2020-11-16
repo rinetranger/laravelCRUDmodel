@@ -11,7 +11,7 @@ class TestController extends Controller
 {
     public function index(Request $request){
 
-          $items =DB::select('select * from api');
+          $items =DB::table('api')->get();
 
       return view('test.index',['items'=>$items]);
 
@@ -77,6 +77,11 @@ class TestController extends Controller
 
 
         return redirect('/test');
+    }
+    public function show(Request $request){
+        $id=$request->id;
+        $items = DB::table('api')->where('id','<=',$id)->get();
+        return view('test.show',['items'=>$items]);
     }
 
 

@@ -21,3 +21,5 @@ Route::get('test/edit','App\Http\Controllers\TestController@edit');
 Route::post('test/edit','App\Http\Controllers\TestController@update');
 Route::get('test/del','App\Http\Controllers\TestController@del');
 Route::post('test/del','App\Http\Controllers\TestController@remove');
+
+Route::get('test/show','App\Http\Controllers\TestController@show');
