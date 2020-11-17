@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApisTable extends Migration
+class CreateMarketTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateApisTable extends Migration
      */
     public function up()
     {
-        Schema::create('apis', function (Blueprint $table) {
-            $table->id();
+        Schema::create('market', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('type');
-            $table->integer('price1');
-            $table->integer('price2');
+            $table->float('price1');
+            $table->string('country1');
+            $table->string('country2');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateApisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apis');
+        Schema::dropIfExists('market');
     }
 }

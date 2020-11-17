@@ -23,3 +23,7 @@ Route::get('test/del','App\Http\Controllers\TestController@del');
 Route::post('test/del','App\Http\Controllers\TestController@remove');
 
 Route::get('test/show','App\Http\Controllers\TestController@show');
+
+Route::get('market','App\Http\Controllers\MarketController@index');
+Route::get('market/find','App\Http\Controllers\MarketController@find');
+Route::post('market/find','App\Http\Controllers\MarketController@search');
